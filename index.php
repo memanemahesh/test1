@@ -1,250 +1,183 @@
-<?php 
-    include("config.php");
-    include("login.php")
-    ?>
-
+<?php require "config.php"; ?>
 <html>
-    <head>
-        <title>Login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-    </head>
-<style>
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+<head>
+		<title>invoice</title>
+		
 
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;	
-	font-family: Raleway, sans-serif;
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		
+		<link rel='stylesheet' href='https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css'>
+		<script src="https://code.jquery.com/ui/1.13.0-rc.3/jquery-ui.min.js" integrity="sha256-R6eRO29lbCyPGfninb/kjIXeRjMOqY3VWPVk6gMhREk=" crossorigin="anonymous"></script>
+		<style>
+		body {
+  background-color:#F0F8FF ;
+		}
+  .text-success {
+    color:red; 
 }
-
-body {
-	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
-}
-
-.container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
-}
-
-.screen {		
-	background: linear-gradient(90deg, #5D54A4, #7C78B8);		
-	position: relative;	
-	height: 600px;
-	width: 360px;	
-	box-shadow: 0px 0px 24px #5C5696;
-}
-
-.screen__content {
-	z-index: 1;
-	position: relative;	
-	height: 100%;
-}
-
-.screen__background {		
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 0;
-	-webkit-clip-path: inset(0 0 0 0);
-	clip-path: inset(0 0 0 0);	
-}
-
-.screen__background__shape {
-	transform: rotate(45deg);
-	position: absolute;
-}
-
-.screen__background__shape1 {
-	height: 520px;
-	width: 520px;
-	background: #FFF;	
-	top: -50px;
-	right: 120px;	
-	border-radius: 0 72px 0 0;
-}
-
-.screen__background__shape2 {
-	height: 220px;
-	width: 220px;
-	background: #6C63AC;	
-	top: -172px;
-	right: 0;	
-	border-radius: 32px;
-}
-
-.screen__background__shape3 {
-	height: 540px;
-	width: 190px;
-	background: linear-gradient(270deg, #5D54A4, #6A679E);
-	top: -24px;
-	right: 0;	
-	border-radius: 32px;
-}
-
-.screen__background__shape4 {
-	height: 400px;
-	width: 200px;
-	background: #7E7BB9;	
-	top: 420px;
-	right: 50px;	
-	border-radius: 60px;
-}
-
-.login {
-	width: 320px;
-	padding: 30px;
-	padding-top: 156px;
-}
-
-.login__field {
-	padding: 20px 0px;	
-	position: relative;	
-}
-
-.login__icon {
-	position: absolute;
-	top: 30px;
-	color: #7875B5;
-}
-
-.login__input {
-	border: none;
-	border-bottom: 2px solid #D1D1D4;
-	background: none;
-	padding: 10px;
-	padding-left: 24px;
-	font-weight: 700;
-	width: 75%;
-	transition: .2s;
-}
-
-.login__input:active,
-.login__input:focus,
-.login__input:hover {
-	outline: none;
-	border-bottom-color: #6A679E;
-}
-
-.login__submit {
-	background: #fff;
-	font-size: 14px;
-	margin-top: 30px;
-	padding: 16px 20px;
-	border-radius: 26px;
-	border: 1px solid #D4D3E8;
-	text-transform: uppercase;
-	font-weight: 700;
-	display: flex;
-	align-items: center;
-	width: 100%;
-	color: #4C489D;
-	box-shadow: 0px 2px 2px #5C5696;
-	cursor: pointer;
-	transition: .2s;
-}
-
-.login__submit:active,
-.login__submit:focus,
-.login__submit:hover {
-	border-color: #6A679E;
-	outline: none;
-}
-
-.button__icon {
-	font-size: 24px;
-	margin-left: auto;
-	color: #7875B5;
-}
-
-.social-login {	
-	position: absolute;
-	height: 140px;
-	width: 160px;
-	text-align: center;
-	bottom: 0px;
-	right: 0px;
-	color: #fff;
-}
-
-.social-icons {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.social-login__icon {
-	padding: 20px 10px;
-	color: #fff;
-	text-decoration: none;	
-	text-shadow: 0px 0px 8px #7875B5;
-}
-
-.social-login__icon:hover {
-	transform: scale(1.5);	
-}
+ 
 
 </style>
-    <body>
-   
-    <div class="container">
-	<div class="screen">
-		<div class="screen__content">
-			 <form  class="login" name="form" action="login.php" onsubmit="return isvalid()" method="POST">
-				<div class="login__field">
-					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" name="user" placeholder="User name / Email">
-				</div>
-				<div class="login__field">
-					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" name="pass" placeholder="Password">
-				</div>
-				<button class="button login__submit" name = "submit">
-					<span class="button__text">Log In Now</span>
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
-			</form>
-			<div class="social-login">
-			
-				<div class="social-icons">
-					<a href="#" class="social-login__icon fab fa-instagram"></a>
-					<a href="#" class="social-login__icon fab fa-facebook"></a>
-					<a href="#" class="social-login__icon fab fa-twitter"></a>
-				</div>
-			</div>
-		</div>
-		<div class="screen__background">
-			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
-			<span class="screen__background__shape screen__background__shape2"></span>
-			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
-	</div>
-</div>
+	</head>
+<body>
+<div class='container pt-5'>
+    <h1 style="text-align:right;"><a href="dashbord.php">Admin</a></h1><hr>
+    <?php
+    if (isset($_POST["submit"])) {
+        $stmt = $con->prepare("INSERT INTO users (INVOICE_DATE, user_name, user_address, GRAND_TOTAL, user_no) VALUES (?, ?, ?, ?, ?)");
+        
+        $invoice_date = date("Y-m-d", strtotime($_POST["invoice_date"]));
+        $stmt->bind_param("ssssd", $invoice_date, $_POST["cname"], $_POST["caddress"], $_POST["grand_total"], $_POST["cno"]);
+        
+        if ($stmt->execute()) {
+            $user_id = $stmt->insert_id;
 
-        <script>
-            function isvalid(){
-                var user = document.form.user.value;
-                var pass = document.form.pass.value;
-                if(user.length=="" && pass.length==""){
-                    alert(" Username and password field is empty!!!");
-                    return false;
-                }
-                else if(user.length==""){
-                    alert(" Username field is empty!!!");
-                    return false;
-                }
-                else if(pass.length==""){
-                    alert(" Password field is empty!!!");
-                    return false;
-                }
+            $order_stmt = $con->prepare("INSERT INTO orders (user_id, invoice_date, grand_total) VALUES (?, ?, ?)");
+            $order_stmt->bind_param("isd", $user_id, $invoice_date, $_POST["grand_total"]);
+            $order_stmt->execute();
+            $order_id = $order_stmt->insert_id;
 
+            $item_stmt = $con->prepare("INSERT INTO order_items (order_id, product_id, quantity, total) VALUES (?, ?, ?, ?)");
+            for ($i = 0; $i < count($_POST["pname"]); $i++) {
+                if (empty($_POST["pname"][$i]) || empty($_POST["qty"][$i]) || empty($_POST["total"][$i])) {
+                    continue; 
+                }
+                $product_id = $_POST["pname"][$i];
+                $quantity = $_POST["qty"][$i];
+                $total = $_POST["total"][$i];
+                $item_stmt->bind_param("iiid", $order_id, $product_id, $quantity, $total);
+                $item_stmt->execute();
             }
-        </script>
-    </body>
+
+            echo "<div class='alert alert-success'>Invoice Added. <a href='print.php?id={$order_id}' target='_BLANK'>Click</a> here to Print Invoice</div>";
+        } else {
+            echo "<div class='alert alert-danger'>Invoice Added Failed. Error: " . $stmt->error . "</div>";
+        }
+        $stmt->close();
+    }
+    ?>
+    <form method='post' action='index.php' autocomplete='off'>
+        <div class='row'>
+            <div class='col-md-4'>
+                <h5 class='text-success'><b>Invoice Details</b></h5>
+                <div class='form-group'>
+                    <label>Invoice Date</label>
+                    <input type='text' name='invoice_date' id='date' required class='form-control' >
+                </div>
+            </div>
+            <div class='col-md-8'>
+                <h5 class='text-success'><b>Customer Details</b></h5>
+                <div class='form-group'>
+                    <label>Name</label>
+                    <input type='text' name='cname'  minlength="2" maxlength="25" required class='form-control'>
+                </div>
+                <div class='form-group'>
+                    <label>Phone No</label>
+                    <input type='number' name='cno' pattern="\d{10}" minlength="10" maxlength="10" required class='form-control'>
+                </div>
+                <div class='form-group'>
+                    <label>Address</label>
+                    <input type='text' name='caddress' required class='form-control'>
+                </div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-12'>
+                <h5 class='text-success'><b>Product Details</b></h5>
+                <table class='table table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id='product_tbody'>
+                        <tr>
+                            <td>
+                                <select name='pname[]' class='form-control product-select' required>
+                                    <option value="" selected hidden>Select product</option>
+                                    <?php
+                                    $result = $con->query("SELECT id, product_name, product_rate FROM products");
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<option value='{$row['id']}' data-price='{$row['product_rate']}'>{$row['product_name']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                            <td><input type='text' required name='price[]' class='form-control price' readonly></td>
+                            <td><input type='text' required name='qty[]' class='form-control qty'></td>
+                            <td><input type='text' required name='total[]' class='form-control total' readonly></td>
+                            <td><input type='button' value='x' class='btn btn-danger btn-sm btn-row-remove'></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><input type='button' value='+ Add Row' class='btn btn-primary btn-sm' id='btn-add-row'></td>
+                            <td colspan='2' class='text-right'>Total</td>
+                            <td><input type='text' name='grand_total' id='grand_total' class='form-control' required readonly></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <input type='submit' name='submit' value='Save Invoice' class='btn btn-success float-right'>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+
+$(document).ready(function(){
+    $("#date").datepicker({
+        dateFormat: "dd-mm-yy"
+    });
+});
+    $(document).ready(function () {
+        $("#btn-add-row").click(function () {
+            var row = $("#product_tbody tr:first").clone();
+            row.find("input").val("");
+            $("#product_tbody").append(row);
+        });
+
+        $("body").on("click", ".btn-row-remove", function () {
+            if (confirm("Are you sure?")) {
+                $(this).closest("tr").remove();
+                updateGrandTotal();
+            }
+        });
+
+        $("body").on("change", ".product-select", function () {
+            var price = $(this).find(":selected").data("price");
+            var row = $(this).closest("tr");
+            row.find(".price").val(price);
+            updateRowTotal(row);
+        });
+
+        $("body").on("keyup change", ".qty", function () {
+            var row = $(this).closest("tr");
+            updateRowTotal(row);
+        });
+
+        function updateRowTotal(row) {
+            var price = parseFloat(row.find(".price").val()) || 0;
+            var qty = parseInt(row.find(".qty").val()) || 0;
+            row.find(".total").val(price * qty);
+            updateGrandTotal();
+        }
+
+        function updateGrandTotal() {
+            var grandTotal = 0;
+            $(".total").each(function () {
+                grandTotal += parseFloat($(this).val()) || 0;
+            });
+            $("#grand_total").val(grandTotal);
+        }
+    });
+</script>
+</body>
 </html>
